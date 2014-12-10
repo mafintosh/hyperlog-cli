@@ -1,0 +1,19 @@
+{
+  "name": "hyperlog-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin.js",
+  "dependencies": {
+    "level": "^0.18.0",
+    "minimist": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "hyperlog": "./bin.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
