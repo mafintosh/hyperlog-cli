@@ -41,6 +41,7 @@ var pushed = 0
 
 var replicate = function (mode) {
   var stream = log.replicate({mode: mode})
+  if (argv.quiet || argv.q) return stream
 
   var print = function () {
     var msg = ''
