@@ -4,9 +4,11 @@
   "description": "",
   "main": "bin.js",
   "dependencies": {
-    "hyperlog": "^1.0.2",
+    "duplexify": "^3.2.0",
+    "hyperlog": "^2.2.0",
     "level": "^0.18.0",
-    "minimist": "^1.1.0"
+    "minimist": "^1.1.0",
+    "single-line-log": "^0.4.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,6 +17,6 @@
   "bin": {
     "hyperlog": "./bin.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Mathias Buus (@mafintosh)",
+  "license": "MIT"
 }
