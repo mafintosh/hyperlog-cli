@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+process.title = 'hyperlog'
+
 var minimist = require('minimist')
 var level = require('level')
 var hyperlog = require('hyperlog')
@@ -40,7 +42,7 @@ var pulled = 0
 var pushed = 0
 
 var replicate = function (mode) {
-  var stream = log.replicate({mode: mode})
+  var stream = log.replicate({mode: mode, live: !!argv.live})
   if (argv.quiet || argv.q) return stream
 
   var print = function () {

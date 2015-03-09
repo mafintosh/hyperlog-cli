@@ -5,7 +5,7 @@
   "main": "bin.js",
   "dependencies": {
     "duplexify": "^3.2.0",
-    "hyperlog": "^2.2.0",
+    "hyperlog": "^2.3.1",
     "level": "^0.18.0",
     "minimist": "^1.1.0",
     "single-line-log": "^0.4.1"
