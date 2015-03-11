@@ -149,6 +149,11 @@ switch (argv._[0]) {
   case 'heads':
   heads()
   return
+
+  case 'version':
+  console.log('hyperlog    : %s', require('hyperlog/package.json').version)
+  console.log('(cli)       : %s', require('./package.json').version)
+  return
 }
 
 print()
