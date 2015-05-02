@@ -13,14 +13,12 @@ var url = require('url')
 var stdout = require('single-line-log').stdout
 var argv = minimist(process.argv.slice(2))
 
-var DEFAULT_PORT = 6556
-
 var log = hyperlog(level((argv.path || '.')+'/hyperlog'))
 
 var spawn = function(path) {
   if (/https?:/.test(path)) {
     var p = url.parse(path)
-    var req = (p.protocol === 'https' ? https : http).request({method: 'POST', port: p.port || DEFAULT_PORT, host: p.host})
+    var req = (p.protocol === 'https:' ? https : http).request({method: 'POST', port: p.port, host: p.hostname, path: p.pathname})
     var proxy = duplexify()
 
     req.on('response', function (res) {
