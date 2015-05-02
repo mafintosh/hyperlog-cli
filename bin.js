@@ -5,20 +5,34 @@ process.title = 'hyperlog'
 var minimist = require('minimist')
 var level = require('level')
 var hyperlog = require('hyperlog')
+var subleveldown = require('subleveldown')
 var proc = require('child_process')
 var http = require('http')
 var https = require('https')
 var duplexify = require('duplexify')
 var url = require('url')
 var stdout = require('single-line-log').stdout
-var argv = minimist(process.argv.slice(2))
+var argv = minimist(process.argv.slice(2), {
+  alias: {
+    sublevel: 's',
+    db: 'd'
+  }
+})
 
-var log = hyperlog(level((argv.path || '.')+'/hyperlog'))
+var db = level(argv.db || ((argv.path || '.') + '/hyperlog'))
+
+if (argv.sublevel) {
+  [].concat(argv.sublevel).forEach(function (sub) {
+    db = subleveldown(db, sub)
+  })
+}
+
+var log = hyperlog(db)
 
 var spawn = function(path) {
   if (/https?:/.test(path)) {
     var p = url.parse(path)
-    var req = (p.protocol === 'https:' ? https : http).request({method: 'POST', port: p.port, host: p.hostname, path: p.pathname})
+    var req = (p.protocol === 'https:' ? https : http).request({method: 'POST', port: p.port, host: p.hostname, path: p.path})
     var proxy = duplexify()
 
     req.on('response', function (res) {
